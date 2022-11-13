@@ -9,6 +9,7 @@ import {OKTA_CONFIG, OktaAuthModule} from '@okta/okta-angular';
 import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from "./core/core.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SharedModule} from "./shared/shared.module";
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-77946468.okta.com/oauth2/default',
@@ -23,7 +24,8 @@ const oktaAuth = new OktaAuth({
     OktaAuthModule,
     CoreModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [
     {provide: OKTA_CONFIG, useValue: {oktaAuth}},
