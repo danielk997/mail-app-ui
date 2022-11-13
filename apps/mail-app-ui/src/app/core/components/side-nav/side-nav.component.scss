@@ -5,6 +5,14 @@ mat-sidenav {
   color: white;
   padding: 16px;
   text-align: center;
+
+  .menu-button {
+    display: flex;
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
 }
 
 .content {

@@ -2,11 +2,12 @@ import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {OktaAuthGuard, OktaCallbackComponent} from "@okta/okta-angular";
 import {LoginComponent} from "./core/components/login/login.component";
+import {RouteSegment} from "./shared/routes/routeSegment";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: RouteSegment.dashboard,
     pathMatch: 'full'
   },
   {
@@ -19,8 +20,13 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'dashboard',
+    path: RouteSegment.dashboard,
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+    canLoad: [OktaAuthGuard]
+  },
+  {
+    path: RouteSegment.campaigns,
+    loadChildren: () => import('./campaigns/campaigns.module').then(m => m.CampaignsModule),
     canLoad: [OktaAuthGuard]
   },
 ];
