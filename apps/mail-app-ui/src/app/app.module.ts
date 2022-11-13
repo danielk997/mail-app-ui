@@ -8,6 +8,7 @@ import OktaAuth from '@okta/okta-auth-js';
 import {OKTA_CONFIG, OktaAuthModule} from '@okta/okta-angular';
 import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from "./core/core.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-77946468.okta.com/oauth2/default',
@@ -17,7 +18,13 @@ const oktaAuth = new OktaAuth({
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, OktaAuthModule, CoreModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    OktaAuthModule,
+    CoreModule,
+    AppRoutingModule,
+    BrowserAnimationsModule
+  ],
   providers: [
     {provide: OKTA_CONFIG, useValue: {oktaAuth}},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
