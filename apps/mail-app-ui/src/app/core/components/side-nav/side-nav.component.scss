@@ -1,7 +1,8 @@
 mat-sidenav {
   width: 200px;
   border-right: none;
-  background: #002b5c;
+  background: rgb(126,141,230);
+  background: linear-gradient(0deg, rgba(126,141,230,1) 0%, rgba(44,62,159,1) 100%);
   color: white;
   padding: 16px;
   text-align: center;
@@ -33,7 +34,17 @@ mat-sidenav-container {
 }
 
 mat-sidenav-content {
-  padding: 15px;
+  background-color: #e0dede;
+
+  .content-wrapper {
+    $margin: 18px;
+    background-color: white;
+    box-shadow: 2px 2px 8px 0 rgba(66, 68, 90, 1);
+    margin: $margin;
+    padding: $margin;
+    width:  calc(100% - $margin * 4);
+    height: calc(100%  - $margin * 4);
+  }
 }
 
 
