@@ -4,6 +4,8 @@ import {Observable, of} from "rxjs";
 import {ColumnHelper} from "../../../shared/helpers/column-helper";
 import {SelectionType, TableColumn} from "@swimlane/ngx-datatable";
 import {ActionBarOptions} from "../../../shared/components/action-bar/models/action-bar-options";
+import {MatDialog} from "@angular/material/dialog";
+import {SmtpFormComponent} from "../smtp-form/smtp-form.component";
 
 const data1 = of([
   {name: 'x1', id: 1},
@@ -33,7 +35,8 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private _service: SmtpConfigurationControllerService,
-    private _columnHelper: ColumnHelper
+    private _columnHelper: ColumnHelper,
+    private _matDialog: MatDialog
   ) {
   }
 
@@ -59,6 +62,7 @@ export class SettingsComponent implements OnInit {
           icon: 'add',
           onClick: (selectedItem: any[]) => {
             console.log('CLICK', selectedItem);
+            this._matDialog.open(SmtpFormComponent);
           }
         },
         {

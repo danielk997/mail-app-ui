@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+
+  <mat-form-field>
+    <mat-label>Host</mat-label>
+    <input formControlName="host" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>User Name</mat-label>
+    <input formControlName="userName" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input formControlName="password" matInput type="password">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Port</mat-label>
+    <input formControlName="port" matInput type="number">
+  </mat-form-field>
+</form>
