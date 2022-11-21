@@ -3,6 +3,7 @@ import {OKTA_AUTH, OktaAuthStateService} from "@okta/okta-angular";
 import OktaAuth from "@okta/okta-auth-js";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'mail-app-ui-root',
@@ -15,11 +16,26 @@ export class AppComponent implements OnInit {
   constructor(
     private _router: Router,
     private _oktaStateService: OktaAuthStateService,
+    private _notifierService: NotifierService,
     @Inject(OKTA_AUTH) private _oktaAuth: OktaAuth,
   ) {
   }
 
   ngOnInit() {
+    this.configureNotifier();
+  }
 
+  private configureNotifier() {
+    this._notifierService.getConfig().position = {
+      horizontal: {
+        position: 'right',
+        distance: 10
+      },
+      vertical: {
+        position: 'top',
+        distance: 10,
+        gap: 10
+      }
+    }
   }
 }

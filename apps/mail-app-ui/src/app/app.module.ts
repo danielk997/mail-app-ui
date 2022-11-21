@@ -12,6 +12,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SharedModule} from "./shared/shared.module";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
+import {NotificationEffects} from "./shared/notifications/notification.effects";
+import {NotifierModule} from "angular-notifier";
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-77946468.okta.com/oauth2/default',
@@ -25,11 +27,16 @@ const oktaAuth = new OktaAuth({
     BrowserModule,
     OktaAuthModule,
     CoreModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([])
+    NotifierModule,
+    StoreModule.forRoot({
+
+    }, {}),
+    EffectsModule.forRoot([
+      NotificationEffects
+    ]),
+    AppRoutingModule,
   ],
   providers: [
     {provide: OKTA_CONFIG, useValue: {oktaAuth}},
