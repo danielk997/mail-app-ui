@@ -29,6 +29,11 @@ const routes: Routes = [
     loadChildren: () => import('./campaigns/campaigns.module').then(m => m.CampaignsModule),
     canLoad: [OktaAuthGuard]
   },
+  {
+    path: RouteSegment.settings,
+    loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule),
+    canLoad: [OktaAuthGuard]
+  },
 ];
 
 @NgModule({

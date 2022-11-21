@@ -25,6 +25,8 @@
     "@nrwl/angular": "15.0.13",
     "@okta/okta-angular": "6.0.0",
     "@okta/okta-auth-js": "7.0.0",
+    "@swimlane/ngx-datatable": "^20.1.0",
+    "lodash": "^4.17.21",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -45,6 +47,7 @@
     "@nrwl/workspace": "15.0.13",
     "@types/jest": "28.1.1",
     "@types/node": "16.11.7",
+    "@types/lodash": "^4.14.189",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "cypress": "^10.7.0",

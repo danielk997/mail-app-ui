@@ -17,7 +17,7 @@ export class CampaignsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._service.getTest().subscribe(it => {
+    this._service.getAll2().subscribe(it => {
       console.log(it);
     })
   }
