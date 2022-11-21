@@ -3,6 +3,7 @@ import {SmtpConfigurationControllerService} from "../../../shared/open-api";
 import {Observable, of} from "rxjs";
 import {ColumnHelper} from "../../../shared/helpers/column-helper";
 import {SelectionType, TableColumn} from "@swimlane/ngx-datatable";
+import {ActionBarOptions} from "../../../shared/components/action-bar/models/action-bar-options";
 
 const data1 = of([
   {name: 'x1', id: 1},
@@ -27,6 +28,8 @@ export class SettingsComponent implements OnInit {
   columns!: TableColumn[];
   ColumnHelper = ColumnHelper;
   SelectionType = SelectionType;
+  options!: ActionBarOptions;
+  selected: any[] = [];
 
   constructor(
     private _service: SmtpConfigurationControllerService,
@@ -36,11 +39,35 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.data$ = data1;
-    this.data$.subscribe(it => this.columns = this._columnHelper.getColumns(it))
+    this.data$.subscribe(it => this.columns = this._columnHelper.getColumns(it));
+    this.initOptions();
   }
 
   rowIdentity(row: any) {
     return row.name;
   }
 
+  onSelect(event: { selected: any }) {
+    this.selected = event.selected;
+  }
+
+  private initOptions() {
+    this.options = {
+      buttons: [
+        {
+          text: 'Add',
+          icon: 'add',
+          onClick: (selectedItem: any[]) => {
+            console.log('CLICK', selectedItem);
+          }
+        },
+        {
+          text: 'Delete',
+          icon: 'delete',
+          onClick: () => {
+          }
+        }
+      ]
+    }
+  }
 }

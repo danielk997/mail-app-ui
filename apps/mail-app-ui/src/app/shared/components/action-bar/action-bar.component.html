@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <ng-container *ngFor="let button of options.buttons">
+    <div (click)="button.onClick(selectedItems)" class="button-wrapper">
+      <mat-icon>{{button.icon ?? ''}}</mat-icon>
+      <span>{{button.text}}</span>
+    </div>
+  </ng-container>
+</div>

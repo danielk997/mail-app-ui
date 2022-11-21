@@ -1,9 +1,12 @@
+<mail-app-ui-action-bar [selectedItems]="selected" [options]="options"></mail-app-ui-action-bar>
+<hr>
 <ngx-datatable
   class="material"
   [rows]="data$ | async"
   [selectionType]="SelectionType.checkbox"
   [selected]="[]"
   [columns]="columns"
+  (select)="onSelect($event)"
 >
 
   <ngx-datatable-column
