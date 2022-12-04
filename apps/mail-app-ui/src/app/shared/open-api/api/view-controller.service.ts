@@ -92,15 +92,15 @@ export class ViewControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public add(mail: string, uuid: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}): Observable<ViewAddDTO>;
-    public add(mail: string, uuid: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}): Observable<HttpResponse<ViewAddDTO>>;
-    public add(mail: string, uuid: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}): Observable<HttpEvent<ViewAddDTO>>;
-    public add(mail: string, uuid: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}): Observable<any> {
+    public add1(mail: string, uuid: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}): Observable<ViewAddDTO>;
+    public add1(mail: string, uuid: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}): Observable<HttpResponse<ViewAddDTO>>;
+    public add1(mail: string, uuid: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}): Observable<HttpEvent<ViewAddDTO>>;
+    public add1(mail: string, uuid: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}): Observable<any> {
         if (mail === null || mail === undefined) {
-            throw new Error('Required parameter mail was null or undefined when calling add.');
+            throw new Error('Required parameter mail was null or undefined when calling add1.');
         }
         if (uuid === null || uuid === undefined) {
-            throw new Error('Required parameter uuid was null or undefined when calling add.');
+            throw new Error('Required parameter uuid was null or undefined when calling add1.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});

@@ -14,7 +14,7 @@ export enum ControlType {
 }
 
 export enum TextType {
-  PASSWORD
+  PASSWORD = 'password'
 }
 
 export interface InputParams {

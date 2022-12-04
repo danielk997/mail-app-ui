@@ -41,7 +41,7 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data$ = data1;
+    this.data$ = this._service.getAll1();
     this.data$.subscribe(it => this.columns = this._columnHelper.getColumns(it));
     this.initOptions();
   }
@@ -62,6 +62,13 @@ export class SettingsComponent implements OnInit {
           icon: 'add',
           onClick: (selectedItem: any[]) => {
             console.log('CLICK', selectedItem);
+            this._matDialog.open(SmtpFormComponent);
+          }
+        },
+        {
+          text: 'Update',
+          icon: 'computer',
+          onClick: (selectedItem: any[]) => {
             this._matDialog.open(SmtpFormComponent);
           }
         },
