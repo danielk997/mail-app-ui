@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SmtpFormComponent } from './containers/smtp-form/smtp-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {StoreModule} from "@ngrx/store";
+import *  as fromSmtpConfig from './state/smtp-config.reducer';
 
 @NgModule({
   declarations: [SettingsComponent, SmtpFormComponent],
@@ -15,6 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     NgxDatatableModule,
     SharedModule,
     ReactiveFormsModule,
+    StoreModule.forFeature(fromSmtpConfig.smtpConfigFeatureKey, fromSmtpConfig.smtpConfigReducer)
   ],
 })
 export class SettingsModule {}

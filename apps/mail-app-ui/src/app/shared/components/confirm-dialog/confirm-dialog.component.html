@@ -1,0 +1,16 @@
+<h5>Confirm action</h5>
+<hr>
+<ng-container [ngSwitch]="data.type">
+
+  <ng-container *ngSwitchCase="ConfirmDialogType.DELETE">
+    <p>Are you sure you want to delete this {{data.message ?? ''}}?</p>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="ConfirmDialogType.INFO">
+    <p>{{data.message ?? ''}}</p>
+  </ng-container>
+
+</ng-container>
+<hr>
+<button mat-flat-button [class]="buttonClassName" (click)="onClick()">{{buttonText}}</button>
+<button mat-button [matDialogClose]="null">Cancel</button>

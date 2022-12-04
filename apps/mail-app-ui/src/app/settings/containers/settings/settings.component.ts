@@ -6,6 +6,8 @@ import {SelectionType, TableColumn} from "@swimlane/ngx-datatable";
 import {ActionBarOptions} from "../../../shared/components/action-bar/models/action-bar-options";
 import {MatDialog} from "@angular/material/dialog";
 import {SmtpFormComponent} from "../smtp-form/smtp-form.component";
+import {Store} from "@ngrx/store";
+import {smtpConfigLoadActions} from "../../state/smtp-config.actions";
 
 const data1 = of([
   {name: 'x1', id: 1},
@@ -36,14 +38,15 @@ export class SettingsComponent implements OnInit {
   constructor(
     private _service: SmtpConfigurationControllerService,
     private _columnHelper: ColumnHelper,
-    private _matDialog: MatDialog
+    private _matDialog: MatDialog,
+    private _store: Store
   ) {
   }
 
   ngOnInit(): void {
     this.data$ = this._service.getAll1();
-    this.data$.subscribe(it => this.columns = this._columnHelper.getColumns(it));
     this.initOptions();
+    this._store.dispatch(smtpConfigLoadActions.load({}));
   }
 
   rowIdentity(row: any) {
