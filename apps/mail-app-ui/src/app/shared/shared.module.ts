@@ -10,6 +10,9 @@ import { FormSubmitButtonDirective } from './components/form-base/form-submit-bu
 import { TemplateContextTypeDirective } from './directives/template-context-type.directive';
 import { StartCasePipe } from './pipes/start-case.pipe';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { GridBaseComponent } from './components/grid-base/grid-base.component';
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import { CustomColumnDirective } from './components/grid-base/custom-column.directive';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,11 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     TemplateContextTypeDirective,
     StartCasePipe,
     ConfirmDialogComponent,
+    GridBaseComponent,
+    NgxDatatableModule,
+    CustomColumnDirective
   ],
-  imports: [CommonModule, HttpClientModule, ReactiveFormsModule, ...MATERIALS],
+  imports: [CommonModule, HttpClientModule, ReactiveFormsModule, ...MATERIALS, NgxDatatableModule],
   exports: [
     ...MATERIALS,
     ActionBarComponent,
