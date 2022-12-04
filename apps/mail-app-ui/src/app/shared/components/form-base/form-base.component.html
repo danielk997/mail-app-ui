@@ -1,0 +1,127 @@
+<div *ngIf="!isLoading; else loader">
+  <header>
+    <h2>
+      {{options.type === FormBaseType.CREATE ? 'Create' : 'Update'}} {{options.name}}
+    </h2>
+    <button [matDialogClose]="null" mat-icon-button>
+      <mat-icon>clear</mat-icon>
+    </button>
+  </header>
+
+  <form [formGroup]="form" class="formBase">
+
+    <ng-container *ngIf="!options.tabs">
+
+      <ng-container *ngFor="let formField of options.formFields">
+        <ng-container *ngTemplateOutlet="formFieldsTemplate; context: {$implicit: formField}"></ng-container>
+      </ng-container>
+
+    </ng-container>
+
+
+    <ng-container *ngIf="options.tabs">
+
+      <mat-tab-group animationDuration="0" (selectedTabChange)="onTabChange($event)">
+        <ng-container *ngFor="let tab of options.tabs">
+          <mat-tab [label]="tab">
+            <ng-container *ngIf="selectedTab === tab || options.valueStrategy === FormValueStrategy.ALL">
+              <ng-container *ngFor="let formField of filterByTab(options.formFields, tab)">
+                <ng-container *ngTemplateOutlet="formFieldsTemplate; context: {$implicit: formField}"></ng-container>
+              </ng-container>
+            </ng-container>
+          </mat-tab>
+        </ng-container>
+      </mat-tab-group>
+
+    </ng-container>
+
+    <div class="buttons-wrapper">
+      <ng-container *ngIf="!formSubmitButtonDirective.length; else submitButtonTemplate">
+        <button mat-flat-button color="primary" type="button" (click)="options.onSubmit(form)">
+          {{options.type}}
+        </button>
+      </ng-container>
+
+      <ng-template #submitButtonTemplate>
+        <ng-container *ngFor="let submitButton of formSubmitButtonDirective">
+
+          <ng-container *ngIf="(options.tabs && submitButton.tabName === selectedTab)">
+            <ng-container
+              *ngTemplateOutlet="submitButton.templateRef; context: {$implicit: form}"></ng-container>
+          </ng-container>
+
+        </ng-container>
+      </ng-template>
+
+      <button mat-flat-button color="accent" type="button" [matDialogClose]="null">
+        Cancel
+      </button>
+    </div>
+
+    <ng-template mailAppUiTemplateContextType [type]="templateContextType" #formFieldsTemplate let-formField>
+      <ng-container [ngSwitch]="formField.controlType">
+
+        <ng-container *ngIf="formField.params?.label ?? formField.name | startCase as label">
+
+          <ng-container *ngSwitchCase="ControlType.TEXT">
+            <mat-form-field>
+              <mat-label>{{label}}</mat-label>
+              <input [formControlName]="formField.name" matInput>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="ControlType.CHECKBOX">
+            <mat-checkbox
+              [formControlName]="formField.name">{{label}}</mat-checkbox>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="ControlType.TEXT_AREA">
+            <mat-form-field appearance="fill">
+              <mat-label>{{label}}</mat-label>
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                [formControlName]="formField.name"
+                cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="5">
+              </textarea>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="ControlType.DROPDOWN">
+            <mat-form-field>
+              <mat-label>{{label}}</mat-label>
+              <mat-select [formControlName]="formField.name">
+                <ng-container *ngIf="formField.params!['options'] as options">
+
+                  <mat-option
+                    *ngFor="let item of isObservable(options['data']) ? (options['data'] | async) : options['data']"
+                    [value]="options['valueProp'] ? item[options['valueProp']] : item">
+                    {{options['displayProp'] ? item[options['displayProp']] : item}}
+                  </mat-option>
+
+                </ng-container>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container *ngSwitchDefault>
+            <ng-container *ngIf="getFormFieldTemplate(formField.name)">
+              <ng-container
+                *ngTemplateOutlet="getFormFieldTemplate(formField.name)!.templateRef; context: {$implicit: form.get(formField.name), form: form}"></ng-container>
+            </ng-container>
+          </ng-container>
+
+        </ng-container>
+      </ng-container>
+    </ng-template>
+
+  </form>
+</div>
+
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
+
+
