@@ -26,3 +26,7 @@
     </ngx-datatable-column>
   </ng-container>
 </ngx-datatable>
+<form [formGroup]="form">
+  Editor
+  <ngx-monaco-editor formControlName="test" [options]="editorOptions"></ngx-monaco-editor>
+</form>

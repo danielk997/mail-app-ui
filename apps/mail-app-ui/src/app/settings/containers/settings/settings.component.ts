@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {SmtpFormComponent} from "../smtp-form/smtp-form.component";
 import {Store} from "@ngrx/store";
 import {smtpConfigLoadActions} from "../../state/smtp-config.actions";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'mail-app-ui-settings',
@@ -22,16 +23,22 @@ export class SettingsComponent implements OnInit {
   SelectionType = SelectionType;
   options!: ActionBarOptions;
   selected: any[] = [];
+  editorOptions = {theme: 'vs-dark', language: 'javascript'};
+  form!: FormGroup;
 
   constructor(
     private _service: SmtpConfigurationControllerService,
     private _columnHelper: ColumnHelper,
     private _matDialog: MatDialog,
-    private _store: Store
+    private _store: Store,
+    private _fb: FormBuilder
   ) {
   }
 
   ngOnInit(): void {
+    this.form = this._fb.group({
+      test: ['']
+    })
     this.data$ = this._service.getAll1();
     this.initOptions();
     this._store.dispatch(smtpConfigLoadActions.load({}));
