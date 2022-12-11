@@ -10,11 +10,14 @@ export enum ControlType {
   DROPDOWN,
   MULTI_DROPDOWN,
   CHECKBOX,
-  TEXT_AREA
+  TEXT_AREA,
+  TAGS,
+  MACROS,
+  NAME_VALUE,
 }
 
 export enum TextType {
-  PASSWORD = 'password'
+  PASSWORD
 }
 
 export interface InputParams {
@@ -22,7 +25,7 @@ export interface InputParams {
 }
 
 export interface TextInputParams extends InputParams {
-  type: TextType
+  type: TextType;
 }
 
 export interface DropdownParams<T = unknown> extends InputParams {
@@ -60,7 +63,10 @@ export type AnyControlType =
   | ControlType.DROPDOWN
   | ControlType.MULTI_DROPDOWN
   | ControlType.CHECKBOX
-  | ControlType.TEXT_AREA;
+  | ControlType.TEXT_AREA
+  | ControlType.MACROS
+  | ControlType.TAGS
+  | ControlType.NAME_VALUE;
 
 export type FieldBuilderField<T extends ControlType = ControlType.TEMPLATE> = Omit<FormField<T>, 'name'>;
 
@@ -83,10 +89,6 @@ export class FormFieldBuilder {
 
   dropdown(params: FieldBuilderField<ControlType.DROPDOWN>): FieldBuilderField<ControlType.DROPDOWN> {
     return {controlType: ControlType.DROPDOWN, ...params};
-  }
-
-  multiDropdown(params: FieldBuilderField<ControlType.MULTI_DROPDOWN>): FieldBuilderField<ControlType.MULTI_DROPDOWN> {
-    return {controlType: ControlType.MULTI_DROPDOWN, ...params};
   }
 
   checkbox(params: FieldBuilderField<ControlType.CHECKBOX>): FieldBuilderField<ControlType.CHECKBOX> {

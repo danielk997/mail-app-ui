@@ -23,7 +23,7 @@ export class SettingsComponent implements OnInit {
   SelectionType = SelectionType;
   options!: ActionBarOptions;
   selected: any[] = [];
-  editorOptions = {theme: 'vs-dark', language: 'javascript'};
+  editorOptions = {theme: 'vs-dark', language: 'html'};
   form!: FormGroup;
 
   constructor(
@@ -50,6 +50,10 @@ export class SettingsComponent implements OnInit {
 
   onSelect(event: { selected: any }) {
     this.selected = event.selected;
+  }
+
+    onClick() {
+    console.log(this.form.value);
   }
 
   private initOptions() {

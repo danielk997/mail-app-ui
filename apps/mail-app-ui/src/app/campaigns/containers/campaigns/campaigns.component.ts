@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {x123} from "../../state/campaigns.actions";
+import {campaignCreateActions, x123} from "../../state/campaigns.actions";
 import {CampaignControllerService} from "../../../shared/open-api";
 
 @Component({
@@ -22,7 +22,7 @@ export class CampaignsComponent implements OnInit {
     })
   }
 
-  onClick() {
-    this._store.dispatch(x123());
+  onAdd() {
+    this._store.dispatch(campaignCreateActions.create());
   }
 }

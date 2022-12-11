@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {CampaignsComponent} from "./containers/campaigns/campaigns.component";
+import {CampaignFormComponent} from "./containers/campaign-form/campaign-form.component";
 
 const routes: Routes = [
   {
@@ -8,7 +9,11 @@ const routes: Routes = [
     component: CampaignsComponent,
     pathMatch: 'full'
   },
-
+  {
+    path: 'add',
+    component: CampaignFormComponent,
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { CustomColumnDirective } from './components/grid-base/custom-column.directive';
 import {MonacoEditorModule} from "ngx-monaco-editor-v2";
 import {RouterModule} from "@angular/router";
+import { UnsafeHtmlPipe } from './pipes/unsafe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {RouterModule} from "@angular/router";
     StartCasePipe,
     ConfirmDialogComponent,
     GridBaseComponent,
-    CustomColumnDirective
+    CustomColumnDirective,
+    UnsafeHtmlPipe
   ],
   imports: [
     ...MATERIALS,
@@ -37,14 +39,15 @@ import {RouterModule} from "@angular/router";
     RouterModule,
     MonacoEditorModule.forRoot()
   ],
-  exports: [
-    ...MATERIALS,
-    ActionBarComponent,
-    FormFieldDirective,
-    FormSubmitButtonDirective,
-    FormBaseComponent,
-    RouterModule,
-    MonacoEditorModule
-  ],
+    exports: [
+        ...MATERIALS,
+        ActionBarComponent,
+        FormFieldDirective,
+        FormSubmitButtonDirective,
+        FormBaseComponent,
+        RouterModule,
+        MonacoEditorModule,
+        UnsafeHtmlPipe
+    ],
 })
 export class SharedModule {}

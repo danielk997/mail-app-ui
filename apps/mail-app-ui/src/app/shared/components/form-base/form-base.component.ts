@@ -1,11 +1,12 @@
-import {Component, ContentChildren, Input, OnInit, QueryList} from '@angular/core';
-import {AnyControlType, ControlType, FormField} from "./form-field-builder";
+import {Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {filter, Observable} from "rxjs";
-import {FormFieldDirective} from "./form-field.directive";
-import {FormSubmitButtonDirective} from "./form-submit-button.directive";
-import {MatTabChangeEvent} from "@angular/material/tabs";
+import {Observable} from "rxjs";
+import {filter} from "rxjs/operators";
 import * as _ from "lodash";
+import {MatTabChangeEvent} from "@angular/material/tabs";
+import {FormFieldDirective} from './form-field.directive';
+import {FormSubmitButtonDirective} from './form-submit-button.directive';
+import {AnyControlType, ControlType, FormField} from './form-field-builder';
 import {DataFormAdapter} from "../../models/data-adapter";
 
 export enum FormBaseType {
@@ -46,6 +47,7 @@ export enum FormFieldType {
 export class FormBaseComponent implements OnInit {
 
   @Input() options!: FormBaseOptions;
+  @Output() valueChanged: EventEmitter<any> = new EventEmitter<any>();
   @ContentChildren(FormFieldDirective) formFields!: QueryList<FormFieldDirective>;
   @ContentChildren(FormSubmitButtonDirective) formSubmitButtonDirective!: QueryList<FormSubmitButtonDirective>;
   form!: FormGroup;
@@ -80,6 +82,8 @@ export class FormBaseComponent implements OnInit {
     } else {
       this.hideLoader();
     }
+
+    this.form.valueChanges.subscribe(value => this.valueChanged.emit(value))
   }
 
   onTabChange(ev: MatTabChangeEvent) {
@@ -126,3 +130,4 @@ export class FormBaseComponent implements OnInit {
     }, 500);
   }
 }
+

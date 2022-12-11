@@ -1,11 +1,8 @@
 <div *ngIf="!isLoading; else loader">
-  <header>
+  <header class="d-flex justify-content-between align-items-end mb-2">
     <h2>
       {{options.type === FormBaseType.CREATE ? 'Create' : 'Update'}} {{options.name}}
     </h2>
-    <button [matDialogClose]="null" mat-icon-button>
-      <mat-icon>clear</mat-icon>
-    </button>
   </header>
 
   <form [formGroup]="form" class="formBase">
@@ -35,7 +32,7 @@
 
     </ng-container>
 
-    <div class="buttons-wrapper">
+    <div class="mt-4">
       <ng-container *ngIf="!formSubmitButtonDirective.length; else submitButtonTemplate">
         <button mat-flat-button color="primary" type="button" (click)="options.onSubmit(form)">
           {{options.type}}
@@ -66,9 +63,7 @@
           <ng-container *ngSwitchCase="ControlType.TEXT">
             <mat-form-field>
               <mat-label>{{label}}</mat-label>
-              <input [type]="formField.params?.type && formField.params['type']"
-                     [formControlName]="formField.name"
-                     matInput>
+              <input [type]="formField.params?.textType ?? 'text'" [formControlName]="formField.name" matInput>
             </mat-form-field>
           </ng-container>
 
