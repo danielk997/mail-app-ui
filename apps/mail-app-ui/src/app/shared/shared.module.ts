@@ -11,11 +11,12 @@ import { TemplateContextTypeDirective } from './directives/template-context-type
 import { StartCasePipe } from './pipes/start-case.pipe';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { GridBaseComponent } from './components/grid-base/grid-base.component';
-import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CustomColumnDirective } from './components/grid-base/custom-column.directive';
-import {MonacoEditorModule} from "ngx-monaco-editor-v2";
-import {RouterModule} from "@angular/router";
+import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
+import { RouterModule } from '@angular/router';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html.pipe';
+import { TemplatePreviewComponent } from './components/template-preview/template-preview.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html.pipe';
     ConfirmDialogComponent,
     GridBaseComponent,
     CustomColumnDirective,
-    UnsafeHtmlPipe
+    UnsafeHtmlPipe,
+    TemplatePreviewComponent,
   ],
   imports: [
     ...MATERIALS,
@@ -37,17 +39,18 @@ import { UnsafeHtmlPipe } from './pipes/unsafe-html.pipe';
     ReactiveFormsModule,
     NgxDatatableModule,
     RouterModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(),
   ],
-    exports: [
-        ...MATERIALS,
-        ActionBarComponent,
-        FormFieldDirective,
-        FormSubmitButtonDirective,
-        FormBaseComponent,
-        RouterModule,
-        MonacoEditorModule,
-        UnsafeHtmlPipe
-    ],
+  exports: [
+    ...MATERIALS,
+    ActionBarComponent,
+    FormFieldDirective,
+    FormSubmitButtonDirective,
+    FormBaseComponent,
+    RouterModule,
+    ReactiveFormsModule,
+    MonacoEditorModule,
+    UnsafeHtmlPipe,
+  ],
 })
 export class SharedModule {}

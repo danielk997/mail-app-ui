@@ -12,7 +12,7 @@
 
 
 export interface CampaignDTO { 
-    id?: string;
+    id?: number;
     name?: string;
 }
 

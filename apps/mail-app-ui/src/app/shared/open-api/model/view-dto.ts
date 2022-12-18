@@ -13,7 +13,7 @@ import { SentCampaign } from './sent-campaign';
 
 
 export interface ViewDTO { 
-    id?: string;
+    id?: number;
     date?: string;
     email?: string;
     parent?: SentCampaign;

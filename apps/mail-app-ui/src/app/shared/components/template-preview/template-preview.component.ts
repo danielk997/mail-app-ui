@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
@@ -6,19 +6,13 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
   templateUrl: './template-preview.component.html',
   styleUrls: ['./template-preview.component.scss'],
 })
-export class TemplatePreviewComponent implements OnInit {
+export class TemplatePreviewComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: TemplatePreviewDialogData,
   ) {
   }
-
-  ngOnInit(): void {
-    console.log(this.data);
-  }
-
 }
-
 
 export interface TemplatePreviewDialogData {
   html: string;

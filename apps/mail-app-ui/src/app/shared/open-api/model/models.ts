@@ -4,5 +4,8 @@ export * from './sent-campaign';
 export * from './sent-campaign-dto';
 export * from './smtp-configuration-create-dto';
 export * from './smtp-configuration-dto';
+export * from './template';
+export * from './template-add-dto';
+export * from './template-dto';
 export * from './view-add-dto';
 export * from './view-dto';

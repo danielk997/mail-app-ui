@@ -12,7 +12,7 @@
 
 
 export interface ViewAddDTO { 
-    id?: string;
+    id?: number;
     date?: string;
     email?: string;
     parentId?: string;

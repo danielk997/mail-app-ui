@@ -30,6 +30,11 @@ const routes: Routes = [
     canLoad: [OktaAuthGuard]
   },
   {
+    path: RouteSegment.templates,
+    loadChildren: () => import('./templates/templates.module').then(m => m.TemplatesModule),
+    canLoad: [OktaAuthGuard]
+  },
+  {
     path: RouteSegment.settings,
     loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule),
     canLoad: [OktaAuthGuard]

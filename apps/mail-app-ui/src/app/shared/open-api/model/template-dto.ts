@@ -11,8 +11,9 @@
  */
 
 
-export interface Campaign { 
+export interface TemplateDTO { 
     id?: number;
-    name: string;
+    name?: string;
+    content?: string;
 }
 

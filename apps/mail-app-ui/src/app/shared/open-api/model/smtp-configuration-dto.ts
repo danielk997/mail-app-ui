@@ -12,7 +12,7 @@
 
 
 export interface SmtpConfigurationDTO { 
-    id?: string;
+    id?: number;
     host?: string;
     userName?: string;
     password?: string;

@@ -7,13 +7,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { CampaignsEffects } from './state/campaigns.effects';
 import { CampaignFormComponent } from './containers/campaign-form/campaign-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TemplatePreviewComponent } from './components/template-preview/template-preview.component';
 
 @NgModule({
   declarations: [
     CampaignsComponent,
     CampaignFormComponent,
-    TemplatePreviewComponent,
   ],
   imports: [
     CommonModule,

@@ -10,11 +10,13 @@
  * Do not edit the class manually.
  */
 import { Campaign } from './campaign';
+import { Template } from './template';
 
 
 export interface SentCampaign { 
     id?: string;
     date: string;
     parent: Campaign;
+    template: Template;
 }
 

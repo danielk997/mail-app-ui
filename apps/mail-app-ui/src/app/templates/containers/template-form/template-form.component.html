@@ -1,0 +1,10 @@
+<mail-app-ui-form-base (valueChanged)="onValueChanged($event)" [options]="options">
+
+  <ng-template formFieldName="content" appFormField let-control>
+    <h4>Message</h4>
+    <ngx-monaco-editor [style.height]="'60vh'" [options]="editorOptions" [formControl]="control"></ngx-monaco-editor>
+  </ng-template>
+
+
+</mail-app-ui-form-base>
+<button (click)="onPreview()">Preview</button>
