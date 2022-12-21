@@ -42,7 +42,7 @@ export class TemplateFormComponent implements OnInit {
   }
 
   onValueChanged(value: any) {
-    this.message = value.message ?? '';
+    this.message = value.content ?? '';
   }
 
   private initOptions() {

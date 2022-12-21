@@ -1,29 +1,35 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {forkJoin, Observable, of} from "rxjs";
-import {catchError, concatMap, map} from "rxjs/operators";
+import {catchError, concatMap, map, tap} from "rxjs/operators";
 import {MatDialog} from "@angular/material/dialog";
 import {ActionGroup} from "@ngrx/store/src/action_group_creator_models";
 import {ComponentType} from "@angular/cdk/overlay";
 import {MemoizedSelector, Store} from "@ngrx/store";
 import {CommonActions, FeatureName} from "./actions";
-import {ApiResponse} from "../../models/api-response";
-import {SmtpConfigurationDTO} from "../../open-api";
+import {HttpContext} from "@angular/common/http";
 
 export interface CommonService<T> {
-  get?: (params?: any) => Observable<ApiResponse<T[]>>;
-  getById?: (id: string, ...args: any[]) => Observable<SmtpConfigurationDTO>;
-  update?: (id: string, data: any) => Observable<ApiResponse<string[]>>;
-  delete?: (id: string) => Observable<ApiResponse<string[]>>;
-  create?: (data: any, params?: any) => Observable<ApiResponse<string[]>>;
+  get(): CanLoad<T>;
 }
 
-export interface EffectBase<T, C> {
+export type CanLoad<T> = {
+  [p: string]: (observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext}) => any
+};
+
+
+export interface ServiceConfig<S extends CanLoad<T>, T> {
+  service: S;
+  getAllMethodName: keyof S;
+}
+
+export interface EffectBase<T, C, S extends CanLoad<T>> {
   featureName: FeatureName;
   dataSelector: MemoizedSelector<any, any>;
   actions$: Actions;
   matDialog: MatDialog;
   store: Store<any>;
-  service: CommonService<T>;
+  service: ServiceConfig<S, T>;
+  getAllMethod: (params?: any) => Observable<T[]>;
   loadActions?: ActionGroup<string, CommonActions<T>['load']>;
   createActions?: ActionGroup<string, CommonActions<T>['create']>;
   updateActions?: ActionGroup<string, CommonActions<T>['update']>;
@@ -36,11 +42,13 @@ export interface LoadEffectExtras<T> {
   extraData?: Observable<any>[];
 }
 
-export function load$<T, C>(this: EffectBase<T, C>, extras?: LoadEffectExtras<any>) {
+export function load$<T, C, S extends CanLoad<T>>(this: EffectBase<T, C, S>, extras?: LoadEffectExtras<any>) {
   return createEffect(() => this.actions$.pipe(
+    tap(() => console.log('load')),
     ofType(this.loadActions!.load),
+
     concatMap(action => forkJoin([
-      this.service.get!(action.dataRequest?.params),
+      this.service.service[this.service.getAllMethodName](action.dataRequest?.params),
       ...extras?.extraData ?? []
     ]).pipe(
       map(it => this.loadActions!.loadSuccess({data: it})),

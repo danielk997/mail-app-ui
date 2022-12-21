@@ -1,4 +1,4 @@
-import {Component, ContentChildren, Input, OnInit, QueryList} from '@angular/core';
+import {Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef} from '@angular/core';
 import {SelectionType, SortType, TableColumn} from '@swimlane/ngx-datatable';
 import { DataAdapter } from '../../models/data-adapter';
 import { CustomColumnDirective } from './custom-column.directive';
@@ -13,10 +13,12 @@ export class GridBaseComponent implements OnInit {
   ColumnTemplateType = ColumnTemplateType;
   @Input() options!: GridOptions;
   @Input() dataAdapter!: DataAdapter<any>;
+  @Output() selectionChange: EventEmitter<any[]> = new EventEmitter<any[]>();
   @ContentChildren(CustomColumnDirective) customColumns!: QueryList<CustomColumnDirective>;
   itemsPerPage: number = 10;
-  SelectionType = SelectionType;
-  SortType = SortType;
+  selected: any[] = [];
+  selectionType = SelectionType.checkbox;
+  sortType = SortType.single;
 
   constructor() {
   }
@@ -38,31 +40,43 @@ export class GridBaseComponent implements OnInit {
   get textColumns(): CustomTableColumn[] {
     return this.options.columns.filter(it => it.columnTemplateType !== ColumnTemplateType.ACTIONS);
   }
+
+  onSelectionChange(data: any) {
+    this.selected.splice(0, this.selected.length);
+    this.selected.push(...data.selected);
+    this.selectionChange.emit(this.selected);
+  }
 }
 
 export interface GridOptions {
   columns: CustomTableColumn[];
   hideTableManagement?: boolean;
+  hideFooter?: boolean;
+  hideCheckboxColumn?: boolean;
+  styles?: string;
 }
 
 export enum ColumnTemplateType {
   DEFAULT,
-  TAGS,
   ACTIONS,
-  LINK
+  LINK,
+  TEMPLATE
 }
+
 
 export interface CustomTableColumn extends TableColumn {
   columnTemplateType?: ColumnTemplateType;
   buttons?: TableActionButton[];
   transformRowValue?: (row: any) => string | Observable<string>;
   href?: (row: any) => string;
-  onClick?: (row: any) => any;
+  rowClass?: (row: any) => string;
+  onClick?: (row: any, index: number) => any;
   async?: boolean;
+  template?: TemplateRef<any>;
 }
 
 export interface TableActionButton {
-  onClick: (row: any) => any;
+  onClick: (row: any, index: number) => any;
   icon?: string;
   dynamicIcon?: (row: any) => string;
   tooltip?: string;
@@ -70,37 +84,3 @@ export interface TableActionButton {
   disabled?: (args: any) => boolean;
 }
 
-export class CustomTableColumnBuilder {
-
-  private readonly initProps: CustomTableColumn = {
-    columnTemplateType: ColumnTemplateType.DEFAULT,
-  }
-  private props: CustomTableColumn = this.initProps;
-
-  setProps(options: CustomTableColumn): CustomTableColumnBuilder {
-    this.props = {
-      ...this.initProps,
-      ...options
-    }
-    return this;
-  }
-
-  addProps(options: CustomTableColumn): CustomTableColumnBuilder {
-    this.props = {
-      ...this.props,
-      ...options
-    }
-    return this;
-  }
-
-  addPropsIf(condition: boolean, options: CustomTableColumn): CustomTableColumnBuilder {
-    if (condition)
-      this.addProps(options);
-
-    return this;
-  }
-
-  build(): CustomTableColumn {
-    return this.props;
-  }
-}

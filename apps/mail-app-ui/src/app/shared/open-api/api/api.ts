@@ -1,5 +1,7 @@
 export * from './campaign-controller.service';
 import { CampaignControllerService } from './campaign-controller.service';
+export * from './group-controller.service';
+import { GroupControllerService } from './group-controller.service';
 export * from './sent-campaign-controller.service';
 import { SentCampaignControllerService } from './sent-campaign-controller.service';
 export * from './smtp-configuration-controller.service';
@@ -8,4 +10,4 @@ export * from './template-controller.service';
 import { TemplateControllerService } from './template-controller.service';
 export * from './view-controller.service';
 import { ViewControllerService } from './view-controller.service';
-export const APIS = [CampaignControllerService, SentCampaignControllerService, SmtpConfigurationControllerService, TemplateControllerService, ViewControllerService];
+export const APIS = [CampaignControllerService, GroupControllerService, SentCampaignControllerService, SmtpConfigurationControllerService, TemplateControllerService, ViewControllerService];

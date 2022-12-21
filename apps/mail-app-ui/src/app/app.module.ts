@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { NotificationEffects } from './shared/notifications/notification.effects';
 import { NotifierModule } from 'angular-notifier';
+import {SmtpConfigEffects} from "./settings/state/smtp-config.effects";
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-77946468.okta.com/oauth2/default',
@@ -31,7 +32,7 @@ const oktaAuth = new OktaAuth({
     SharedModule,
     NotifierModule,
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([NotificationEffects]),
+    EffectsModule.forRoot([NotificationEffects, SmtpConfigEffects]),
     AppRoutingModule,
   ],
   providers: [

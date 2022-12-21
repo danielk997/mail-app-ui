@@ -17,6 +17,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { RouterModule } from '@angular/router';
 import { UnsafeHtmlPipe } from './pipes/unsafe-html.pipe';
 import { TemplatePreviewComponent } from './components/template-preview/template-preview.component';
+import {APIS} from "./open-api";
 
 @NgModule({
   declarations: [
@@ -41,16 +42,17 @@ import { TemplatePreviewComponent } from './components/template-preview/template
     RouterModule,
     MonacoEditorModule.forRoot(),
   ],
-  exports: [
-    ...MATERIALS,
-    ActionBarComponent,
-    FormFieldDirective,
-    FormSubmitButtonDirective,
-    FormBaseComponent,
-    RouterModule,
-    ReactiveFormsModule,
-    MonacoEditorModule,
-    UnsafeHtmlPipe,
-  ],
+    exports: [
+        ...MATERIALS,
+        ActionBarComponent,
+        FormFieldDirective,
+        FormSubmitButtonDirective,
+        FormBaseComponent,
+        RouterModule,
+        ReactiveFormsModule,
+        MonacoEditorModule,
+        UnsafeHtmlPipe,
+        GridBaseComponent,
+    ],
 })
 export class SharedModule {}

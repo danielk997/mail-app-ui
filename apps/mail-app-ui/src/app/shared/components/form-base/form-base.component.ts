@@ -11,7 +11,7 @@ import {DataFormAdapter} from "../../models/data-adapter";
 
 export enum FormBaseType {
   CREATE = 'Create',
-  UPDATE = 'Update'
+  UPDATE = 'Update',
 }
 
 export enum FormValueStrategy {

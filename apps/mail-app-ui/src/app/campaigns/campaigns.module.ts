@@ -7,11 +7,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { CampaignsEffects } from './state/campaigns.effects';
 import { CampaignFormComponent } from './containers/campaign-form/campaign-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SendCampaignFormComponent } from './containers/send-campaign-form/send-campaign-form.component';
 
 @NgModule({
   declarations: [
     CampaignsComponent,
     CampaignFormComponent,
+    SendCampaignFormComponent,
   ],
   imports: [
     CommonModule,

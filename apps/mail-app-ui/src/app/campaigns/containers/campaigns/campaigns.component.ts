@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {campaignCreateActions, x123} from "../../state/campaigns.actions";
+import {campaignCreateActions, campaignSendActions} from "../../state/campaigns.actions";
 import {CampaignControllerService} from "../../../shared/open-api";
 
 @Component({
@@ -24,5 +24,9 @@ export class CampaignsComponent implements OnInit {
 
   onAdd() {
     this._store.dispatch(campaignCreateActions.create());
+  }
+
+  onSend() {
+    this._store.dispatch(campaignSendActions.init());
   }
 }

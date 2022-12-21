@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {campaignCreateActions} from "./campaigns.actions";
+import {campaignCreateActions, campaignSendActions} from "./campaigns.actions";
 import {tap} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -19,5 +19,10 @@ export class CampaignsEffects {
   create$ = createEffect(() => this._actions$.pipe(
     ofType(campaignCreateActions.create),
     tap(it => this._router.navigate(['/campaigns/add'])),
+  ), {dispatch: false});
+
+  sendInit$ = createEffect(() => this._actions$.pipe(
+    ofType(campaignSendActions.init),
+    tap(it => this._router.navigate(['/campaigns/send'])),
   ), {dispatch: false})
 }

@@ -1,28 +1,3 @@
 <mail-app-ui-action-bar [selectedItems]="selected" [options]="options"></mail-app-ui-action-bar>
 <hr>
-<ngx-datatable
-  class="material"
-  [rows]="data$ | async"
-  [selectionType]="SelectionType.checkbox"
-  [selected]="[]"
-  [columns]="columns"
-  (select)="onSelect($event)"
->
-
-  <ngx-datatable-column
-    [width]="30"
-    [checkboxable]="true">
-
-  </ngx-datatable-column>
-
-  <ng-container *ngFor="let col of columns">
-    <ngx-datatable-column>
-      <ng-template ngx-datatable-header-template let-row="row">
-        {{col.name}}
-      </ng-template>
-      <ng-template ngx-datatable-cell-template let-row="row">
-        {{row[col.prop ?? '']}}
-      </ng-template>
-    </ngx-datatable-column>
-  </ng-container>
-</ngx-datatable>
+<mail-app-ui-grid-base [dataAdapter]="(dataAdapter$ | async)!" [options]="gridOptions"></mail-app-ui-grid-base>
