@@ -115,7 +115,8 @@ export class SettingsComponent implements OnInit {
     });
 
     this.gridOptions = {
-      columns: columns
+      columns: columns,
+      hideCheckboxColumn: true
     }
   }
 }
