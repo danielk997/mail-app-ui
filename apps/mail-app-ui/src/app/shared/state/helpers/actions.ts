@@ -4,6 +4,7 @@ import {DataRequest} from "../../models/data-adapter";
 export enum FeatureName {
   SMTP_CONFIG = 'Smtp Config',
   TEMPLATES = 'Templates',
+  CAMPAIGNS = 'Campaigns',
 }
 
 export type ResponseError = string;
