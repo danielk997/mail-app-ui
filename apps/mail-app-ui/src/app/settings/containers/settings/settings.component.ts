@@ -33,22 +33,16 @@ export class SettingsComponent implements OnInit {
   options!: ActionBarOptions;
   gridOptions!: GridOptions;
   selected: any[] = [];
-  editorOptions = {theme: 'vs-dark', language: 'html'};
-  form!: FormGroup;
 
   constructor(
     private _columnHelper: ColumnHelper,
     private _matDialog: MatDialog,
     private _store: Store,
-    private _fb: FormBuilder,
     private _cb: CustomTableColumnBuilder
   ) {
   }
 
   ngOnInit(): void {
-    this.form = this._fb.group({
-      test: ['']
-    })
     this.initOptions();
     this.initGridOptions();
     this._store.dispatch(smtpConfigLoadActions.load({}));
@@ -64,10 +58,6 @@ export class SettingsComponent implements OnInit {
 
   onSelect(event: { selected: any }) {
     this.selected = event.selected;
-  }
-
-  onClick() {
-    console.log(this.form.value);
   }
 
   private initOptions() {

@@ -1,8 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBaseOptions, FormBaseType} from "../../../shared/components/form-base/form-base.component";
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBaseData, FormBaseOptions, FormBaseType} from "../../../shared/components/form-base/form-base.component";
 import {FormFieldBuilder} from "../../../shared/components/form-base/form-field-builder";
 import {FormGroup} from "@angular/forms";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
+import {Store} from "@ngrx/store";
+import {campaignCreateActions, campaignUpdateActions} from "../../state/campaigns.actions";
+import {CampaignDTO} from "../../../shared/open-api";
+import {of} from "rxjs";
 
 @Component({
   selector: 'mail-app-ui-campaign-form',
@@ -18,6 +22,8 @@ export class CampaignFormComponent implements OnInit {
   constructor(
     private _fb: FormFieldBuilder,
     private _matDialog: MatDialog,
+    private _store: Store,
+    @Inject(MAT_DIALOG_DATA) public data: FormBaseData<CampaignDTO>
   ) {
   }
 
@@ -32,17 +38,26 @@ export class CampaignFormComponent implements OnInit {
 
   private initOptions() {
     this.options = {
-      type: FormBaseType.CREATE,
+      type: this.data.formType,
       name: 'Campaign',
       formFields: this._fb.fields({
         name: this._fb.text({}),
-        message: this._fb.template({}),
       }),
       onSubmit: (form: FormGroup) => this.onSubmit(form.value)
+    }
+
+    if (this.data.dto) {
+      this.options.dataToUpdate$ = of(this.data.dto);
     }
   }
 
   private onSubmit(formValue: any) {
-    console.log(formValue);
+    if (this.data.formType === FormBaseType.CREATE)
+      this._store.dispatch(campaignCreateActions.createSubmitted({data: formValue}))
+    else
+      this._store.dispatch(campaignUpdateActions.updateSubmitted({
+        id: this.data.dto?.data?.id!,
+        data: formValue
+      }))
   }
 }

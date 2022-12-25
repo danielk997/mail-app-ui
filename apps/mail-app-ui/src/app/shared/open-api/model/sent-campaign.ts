@@ -17,6 +17,7 @@ import { Template } from './template';
 export interface SentCampaign { 
     id?: string;
     date: string;
+    status: string;
     parent: Campaign;
     template: Template;
     group: Group;

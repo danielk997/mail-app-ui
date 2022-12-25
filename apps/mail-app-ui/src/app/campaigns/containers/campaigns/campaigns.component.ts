@@ -1,6 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {campaignCreateActions, campaignSendActions, campaignsLoadActions} from "../../state/campaigns.actions";
+import {
+  campaignCreateActions,
+  campaignSendActions,
+  campaignsLoadActions,
+  campaignUpdateActions
+} from "../../state/campaigns.actions";
 import {CampaignDTO} from "../../../shared/open-api";
 import {ActionBarOptions} from "../../../shared/components/action-bar/models/action-bar-options";
 import {GridOptions} from "../../../shared/components/grid-base/grid-base.component";
@@ -52,7 +57,7 @@ export class CampaignsComponent implements OnInit {
           text: 'Create Campaign',
           icon: 'add',
           onClick: () => {
-            this._store.dispatch(campaignCreateActions.create());
+            this._store.dispatch(campaignCreateActions.create({}));
           }
         },
         {
@@ -71,7 +76,8 @@ export class CampaignsComponent implements OnInit {
       name: this._cb.text({}),
       actions: this._cb.actions({
         buttons: [
-          editActionButton(() => {
+          editActionButton((row: CampaignDTO) => {
+            this._store.dispatch(campaignUpdateActions.loadDataToUpdate({id: row.id!}))
           }),
           deleteActionButton(() => {
           }),

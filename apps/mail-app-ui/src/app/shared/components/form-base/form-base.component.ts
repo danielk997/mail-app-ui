@@ -19,9 +19,9 @@ export enum FormValueStrategy {
   TAB
 }
 
-export interface FormBaseData {
+export interface FormBaseData<T = {}> {
   formType: FormBaseType;
-  id?: string;
+  dto?: DataFormAdapter<T>;
 }
 
 export interface FormBaseOptions {

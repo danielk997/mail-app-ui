@@ -9,17 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { CampaignDTO } from './campaign-dto';
-import { TemplateDTO } from './template-dto';
-import { GroupDTO } from './group-dto';
 
 
-export interface SentCampaignDTO { 
-    id?: string;
-    date?: string;
-    parent?: CampaignDTO;
-    template?: TemplateDTO;
-    group?: GroupDTO;
-    status?: string;
+export interface CampaignAddDTO { 
+    name?: string;
 }
 

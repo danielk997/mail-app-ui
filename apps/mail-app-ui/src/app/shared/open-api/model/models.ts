@@ -1,4 +1,5 @@
 export * from './campaign';
+export * from './campaign-add-dto';
 export * from './campaign-dto';
 export * from './group';
 export * from './group-dto';

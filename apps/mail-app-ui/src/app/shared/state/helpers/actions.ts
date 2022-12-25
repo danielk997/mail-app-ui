@@ -3,8 +3,8 @@ import {DataRequest} from "../../models/data-adapter";
 
 export enum FeatureName {
   SMTP_CONFIG = 'Smtp Config',
-  TEMPLATES = 'Templates',
-  CAMPAIGNS = 'Campaigns',
+  TEMPLATES = 'Template',
+  CAMPAIGNS = 'Campaign',
 }
 
 export type ResponseError = string;
@@ -28,13 +28,13 @@ export const createActions = <T, P = {}>(featureName: FeatureName) => createActi
   }
 });
 
-export const updateActions = <T>(featureName: FeatureName) => createActionGroup({
+export const updateActions = <T, ID = string>(featureName: FeatureName) => createActionGroup({
   source: featureName,
   events: {
-    'Load Data To Update': props<{ id: string, params?: any }>(),
+    'Load Data To Update': props<{ id: ID, params?: any }>(),
     'Load Data To Update Success': props<{ data: T }>(),
     'Load Data To Update Failure': props<{ error: ResponseError }>(),
-    'Update Submitted': props<{ id: string, data: T }>(),
+    'Update Submitted': props<{ id: ID, data: T }>(),
     'Update Success': props<{ data: T }>(),
     'Update Failure': props<{ data: T, error: ResponseError }>(),
   }
