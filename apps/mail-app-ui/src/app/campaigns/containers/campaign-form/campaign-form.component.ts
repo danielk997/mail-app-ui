@@ -6,7 +6,7 @@ import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {Store} from "@ngrx/store";
 import {campaignCreateActions, campaignUpdateActions} from "../../state/campaigns.actions";
 import {CampaignDTO} from "../../../shared/open-api";
-import {of} from "rxjs";
+import {selectCampaignToUpdate} from "../../state/campaigns.selectors";
 
 @Component({
   selector: 'mail-app-ui-campaign-form',
@@ -43,11 +43,8 @@ export class CampaignFormComponent implements OnInit {
       formFields: this._fb.fields({
         name: this._fb.text({}),
       }),
+      dataToUpdate$: this._store.select(selectCampaignToUpdate),
       onSubmit: (form: FormGroup) => this.onSubmit(form.value)
-    }
-
-    if (this.data.dto) {
-      this.options.dataToUpdate$ = of(this.data.dto);
     }
   }
 

@@ -79,6 +79,13 @@ export class CampaignsComponent implements OnInit {
           editActionButton((row: CampaignDTO) => {
             this._store.dispatch(campaignUpdateActions.loadDataToUpdate({id: row.id!}))
           }),
+          {
+            icon: 'assessment',
+            tooltip: 'Stats',
+            onClick: (row: CampaignDTO) => {
+              this._store.dispatch(campaignSendActions.loadsent({id: row.id ?? 1}));
+            }
+          },
           deleteActionButton(() => {
           }),
         ]

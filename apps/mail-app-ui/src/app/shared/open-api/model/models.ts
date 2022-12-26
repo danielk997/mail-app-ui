@@ -13,3 +13,5 @@ export * from './template-add-dto';
 export * from './template-dto';
 export * from './view-add-dto';
 export * from './view-dto';
+export * from './click-dto';
+export * from './stats-dto';

@@ -4,6 +4,7 @@ import {map, tap} from 'rxjs/operators';
 import {notificationActions} from "../notifications/notification.actions";
 import {campaignCreateActions, campaignUpdateActions} from "../../campaigns/state/campaigns.actions";
 import {MatDialog} from "@angular/material/dialog";
+import {templatesCreateActions, templatesUpdateActions} from "../../templates/state/templates.actions";
 
 
 @Injectable({
@@ -20,7 +21,9 @@ export class SharedEffects {
   success$ = createEffect(() => this._actions$.pipe(
     ofType(
       campaignCreateActions.createSuccess,
-      campaignUpdateActions.updateSuccess
+      campaignUpdateActions.updateSuccess,
+      templatesCreateActions.createSuccess,
+      templatesUpdateActions.updateSuccess,
     ),
     tap(() => this._matDialog.closeAll()),
     map((action) => notificationActions.success({message: this.getNotificationMessage(action.type)}))

@@ -7,4 +7,6 @@ export const selectTemplateState = createFeatureSelector<fromTemplates.State>(
 
 export const selectTemplatesList = createSelector(selectTemplateState, state => state.list);
 
+export const selectTemplateToUpdate = createSelector(selectTemplateState, state => state.dataToUpdate);
+
 

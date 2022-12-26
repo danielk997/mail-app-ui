@@ -9,7 +9,7 @@ export interface HasDataToUpdate<T> {
   dataToUpdate: DataFormAdapter<T>;
 }
 
-export const onLoad = <S extends HasList<T>, T>(creator: any): ReducerTypes<S, typeof creator> =>
+export const onLoad = <S extends HasList<T>, T>(creator: any, entry?: string): ReducerTypes<S, typeof creator> =>
   on(creator, (state, action) => ({
     ...state,
     list: {

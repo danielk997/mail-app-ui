@@ -1,0 +1,17 @@
+<h1>Stats</h1>
+<mat-tab-group animationDuration="0">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Clicks ({{(clicksDataAdapter$ | async)!.data.length}})</span>
+    </ng-template>
+    <mail-app-ui-grid-base [dataAdapter]="(clicksDataAdapter$ | async)!"
+                           [options]="clicksGridOptions"></mail-app-ui-grid-base>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span>Views ({{(viewsDataAdapter$ | async)!.data.length}})</span>
+    </ng-template>
+    <mail-app-ui-grid-base [dataAdapter]="(viewsDataAdapter$ | async)!"
+                           [options]="viewsGridOptions"></mail-app-ui-grid-base>
+  </mat-tab>
+</mat-tab-group>
