@@ -8,7 +8,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {SmtpFormComponent} from "../smtp-form/smtp-form.component";
 import {Store} from "@ngrx/store";
 import {smtpConfigLoadActions} from "../../state/smtp-config.actions";
-import {FormBuilder, FormGroup} from "@angular/forms";
 import {selectSmtpConfigList} from "../../state/smtp-config.selectors";
 import {
   CustomTableColumnBuilder,
@@ -67,21 +66,7 @@ export class SettingsComponent implements OnInit {
           text: 'Add',
           icon: 'add',
           onClick: (selectedItem: any[]) => {
-            console.log('CLICK', selectedItem);
             this._matDialog.open(SmtpFormComponent);
-          }
-        },
-        {
-          text: 'Update',
-          icon: 'computer',
-          onClick: (selectedItem: any[]) => {
-            this._matDialog.open(SmtpFormComponent);
-          }
-        },
-        {
-          text: 'Delete',
-          icon: 'delete',
-          onClick: () => {
           }
         }
       ]

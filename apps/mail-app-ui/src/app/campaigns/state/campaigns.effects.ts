@@ -21,6 +21,8 @@ import {Router} from "@angular/router";
 import {CampaignFormComponent} from "../containers/campaign-form/campaign-form.component";
 import {FormBaseData, FormBaseType} from "../../shared/components/form-base/form-base.component";
 import {defaultDataFormAdapter} from "../../shared/models/data-adapter";
+import {notificationActions} from "../../shared/notifications/notification.actions";
+import {RouteSegment} from "../../shared/routes/routeSegment";
 
 
 @Injectable({
@@ -98,6 +100,15 @@ export class CampaignsEffects {
     ofType(campaignSendActions.init),
     tap(it => this.router.navigate(['/campaigns/send'])),
   ), {dispatch: false});
+
+  send$ = createEffect(() => this.actions$.pipe(
+    ofType(campaignSendActions.send),
+    switchMap(({data}) => this.sentCampaignService.addSentCampaign(data).pipe(
+      tap(() => this.router.navigate([RouteSegment.campaigns])),
+      map(() => notificationActions.success({message: 'Campaign scheduled to send'})),
+      catchError((error) => of(notificationActions.error({message: 'Error occured'})))
+    ))
+  ))
 
   loadSent$ = createEffect(() => this.actions$.pipe(
     ofType(campaignSendActions.loadsent),

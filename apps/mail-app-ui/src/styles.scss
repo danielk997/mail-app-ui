@@ -7,3 +7,32 @@ body {
   margin: 0;
   font-family: Calibri, serif;
 }
+
+a:hover {
+  text-decoration: underline
+}
+
+h1 {
+  font-family: 'Enriqueta', arial, serif;
+  line-height: 1.25;
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+h1 a,
+h1 a:visited {
+  color: #333333
+}
+
+p {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5625;
+  margin-bottom: 15px;
+}
+
+hr {
+  margin: 16px 0;
+}

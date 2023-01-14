@@ -9,6 +9,8 @@ import {
   TemplateControllerService
 } from "../../../shared/open-api";
 import {FormGroup} from "@angular/forms";
+import {Store} from "@ngrx/store";
+import {campaignSendActions} from "../../state/campaigns.actions";
 
 @Component({
   selector: 'mail-app-ui-send-campaign-form',
@@ -25,7 +27,8 @@ export class SendCampaignFormComponent implements OnInit {
     private _campaignService: CampaignControllerService,
     private _templateService: TemplateControllerService,
     private _groupService: GroupControllerService,
-    private _sendCampaignService: SentCampaignControllerService
+    private _sendCampaignService: SentCampaignControllerService,
+    private _store: Store
   ) {
   }
 
@@ -49,6 +52,8 @@ export class SendCampaignFormComponent implements OnInit {
             }
           }
         }),
+        sender: this._fb.text({}),
+        title: this._fb.text({}),
         templateId: this._fb.dropdown({
           params: {
             label: 'Template',
@@ -71,9 +76,7 @@ export class SendCampaignFormComponent implements OnInit {
         }),
       }),
       onSubmit: (form: FormGroup) => {
-        this._sendCampaignService.addSentCampaign(form.value).subscribe(it => {
-          console.log(it);
-        });
+        this._store.dispatch(campaignSendActions.send({data: form.value}))
       }
     }
   }

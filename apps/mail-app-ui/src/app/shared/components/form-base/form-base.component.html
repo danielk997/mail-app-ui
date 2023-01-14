@@ -34,7 +34,7 @@
 
     <div class="mt-4">
       <ng-container *ngIf="!formSubmitButtonDirective.length; else submitButtonTemplate">
-        <button mat-flat-button color="primary" type="button" (click)="options.onSubmit(form)">
+        <button style="margin-right: 10px;" mat-flat-button color="primary" type="button" (click)="options.onSubmit(form)">
           {{options.type}}
         </button>
       </ng-container>
@@ -43,6 +43,11 @@
         <ng-container *ngFor="let submitButton of formSubmitButtonDirective">
 
           <ng-container *ngIf="(options.tabs && submitButton.tabName === selectedTab)">
+            <ng-container
+              *ngTemplateOutlet="submitButton.templateRef; context: {$implicit: form}"></ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="!options.tabs">
             <ng-container
               *ngTemplateOutlet="submitButton.templateRef; context: {$implicit: form}"></ng-container>
           </ng-container>
