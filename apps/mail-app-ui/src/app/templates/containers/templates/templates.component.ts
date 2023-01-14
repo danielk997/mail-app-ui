@@ -14,7 +14,7 @@ import {Observable} from "rxjs";
 import {DataAdapter} from "../../../shared/models/data-adapter";
 import {TemplateDTO} from "../../../shared/open-api";
 import {Store} from "@ngrx/store";
-import {templatesLoadActions, templatesUpdateActions} from "../../state/templates.actions";
+import {templatesCreateActions, templatesLoadActions, templatesUpdateActions} from "../../state/templates.actions";
 import {selectTemplatesList} from "../../state/templates.selectors";
 
 @Component({
@@ -50,7 +50,7 @@ export class TemplatesComponent implements OnInit {
     this.options = {
       buttons: [
         actionBarCreateButton(() => {
-          this._router.navigate(['add'], {relativeTo: this._route})
+          this._store.dispatch(templatesCreateActions.create({}))
         })
       ]
     }

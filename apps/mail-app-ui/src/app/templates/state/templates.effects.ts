@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {templatesCreateActions, templatesLoadActions, templatesUpdateActions} from "./templates.actions";
-import {CampaignDTO, TemplateControllerService} from "../../shared/open-api";
+import {CampaignDTO, TemplateAddDTO, TemplateControllerService} from "../../shared/open-api";
 import {Store} from "@ngrx/store";
 import {MatDialog} from "@angular/material/dialog";
 import {of, tap} from "rxjs";
@@ -31,6 +31,16 @@ export class TemplatesEffects {
       catchError(it => of(templatesLoadActions.loadFailure({error: it})))
     ))
   ));
+
+  create$ = createEffect(() => this.actions$.pipe(
+    ofType(templatesCreateActions.create),
+    tap(() => this.matDialog.open<TemplateFormComponent, FormBaseData<TemplateAddDTO>>(TemplateFormComponent, {
+      minWidth: '50vw',
+      data: {
+        formType: FormBaseType.CREATE
+      }
+    }))
+  ), {dispatch: false});
 
   createSubmitted$ = createEffect(() => this.actions$.pipe(
     ofType(templatesCreateActions.createSubmitted),
