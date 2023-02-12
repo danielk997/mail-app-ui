@@ -35,7 +35,8 @@ export class TemplatesEffects {
   create$ = createEffect(() => this.actions$.pipe(
     ofType(templatesCreateActions.create),
     tap(() => this.matDialog.open<TemplateFormComponent, FormBaseData<TemplateAddDTO>>(TemplateFormComponent, {
-      minWidth: '50vw',
+      width: '65vw',
+      panelClass: 'position-relative',
       data: {
         formType: FormBaseType.CREATE
       }
@@ -62,7 +63,8 @@ export class TemplatesEffects {
   loadDataToUpdateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(templatesUpdateActions.loadDataToUpdateSuccess),
     tap(it => this.matDialog.open<TemplateFormComponent, FormBaseData<CampaignDTO>>(TemplateFormComponent, {
-      width: '80vw',
+      width: '65vw',
+      panelClass: 'position-relative',
       data: {
         formType: FormBaseType.UPDATE,
         dto: {

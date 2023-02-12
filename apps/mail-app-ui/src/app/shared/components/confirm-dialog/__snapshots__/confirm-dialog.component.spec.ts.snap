@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmDialogComponent should match snapshot 1`] = `
+"<h5>Confirm action</h5><hr><!--bindings={
+  \\"ng-reflect-ng-switch-case\\": \\"0\\"
+}--><p></p><!--ng-container--><!--bindings={
+  \\"ng-reflect-ng-switch-case\\": \\"1\\"
+}--><!--ng-container--><hr><button mat-flat-button=\\"\\" class=\\"info\\">Confirm</button><button mat-button=\\"\\" type=\\"button\\">Cancel</button>"
+`;
