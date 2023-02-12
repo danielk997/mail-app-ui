@@ -10,10 +10,8 @@
     [footerHeight]="options.hideFooter ? 0 : 50"
     [sortType]="sortType"
     [limit]="options.hideTableManagement ? dataAdapter.data.length : itemsPerPage"
-    [selectionType]="selectionType"
     [scrollbarH]="true"
     [loadingIndicator]="dataAdapter.pendingRequests > 0"
-    (select)="onSelectionChange($event)"
   >
 
     <ng-container *ngIf="!options.hideCheckboxColumn">

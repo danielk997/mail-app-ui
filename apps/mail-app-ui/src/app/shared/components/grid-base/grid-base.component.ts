@@ -1,7 +1,7 @@
-import {Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef} from '@angular/core';
-import {SelectionType, SortType, TableColumn} from '@swimlane/ngx-datatable';
-import { DataAdapter } from '../../models/data-adapter';
-import { CustomColumnDirective } from './custom-column.directive';
+import {Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
+import {SortType, TableColumn} from '@swimlane/ngx-datatable';
+import {DataAdapter} from '../../models/data-adapter';
+import {CustomColumnDirective} from './custom-column.directive';
 import {Observable} from "rxjs";
 
 @Component({
@@ -9,29 +9,13 @@ import {Observable} from "rxjs";
   templateUrl: './grid-base.component.html',
   styleUrls: ['./grid-base.component.scss'],
 })
-export class GridBaseComponent implements OnInit {
+export class GridBaseComponent {
   ColumnTemplateType = ColumnTemplateType;
   @Input() options!: GridOptions;
   @Input() dataAdapter!: DataAdapter<any>;
-  @Output() selectionChange: EventEmitter<any[]> = new EventEmitter<any[]>();
   @ContentChildren(CustomColumnDirective) customColumns!: QueryList<CustomColumnDirective>;
   itemsPerPage: number = 10;
-  selected: any[] = [];
-  selectionType = SelectionType.checkbox;
   sortType = SortType.single;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngAfterViewInit() {
-  }
-
-  onItemPerPageChange(itemsPerPage: number) {
-    this.itemsPerPage = itemsPerPage;
-  }
 
   get actionsColumns(): CustomTableColumn[] {
     return this.options.columns.filter(it => it.columnTemplateType === ColumnTemplateType.ACTIONS);
@@ -39,12 +23,6 @@ export class GridBaseComponent implements OnInit {
 
   get textColumns(): CustomTableColumn[] {
     return this.options.columns.filter(it => it.columnTemplateType !== ColumnTemplateType.ACTIONS);
-  }
-
-  onSelectionChange(data: any) {
-    this.selected.splice(0, this.selected.length);
-    this.selected.push(...data.selected);
-    this.selectionChange.emit(this.selected);
   }
 }
 

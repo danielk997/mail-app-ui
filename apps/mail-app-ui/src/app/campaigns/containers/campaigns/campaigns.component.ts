@@ -86,8 +86,6 @@ export class CampaignsComponent implements OnInit {
               this._store.dispatch(campaignSendActions.loadsent({id: row.id ?? 1}));
             }
           },
-          deleteActionButton(() => {
-          }),
         ]
       }),
     });

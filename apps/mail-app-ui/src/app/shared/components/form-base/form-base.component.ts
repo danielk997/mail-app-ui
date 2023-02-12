@@ -57,7 +57,6 @@ export class FormBaseComponent implements OnInit {
   FormValueStrategy = FormValueStrategy;
   ControlType = ControlType;
   templateContextType!: { $implicit: FormField<AnyControlType> };
-  Validators = Validators;
 
   constructor(
     private fb: FormBuilder

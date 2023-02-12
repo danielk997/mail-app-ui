@@ -1,9 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav mode="side" opened>
-    <button (click)="navigate(Routes.dashboard)" mat-button class="menu-button">
-      <mat-icon>home</mat-icon>
-      <span>Dashboard</span>
-    </button>
+
     <button (click)="navigate(Routes.campaigns)" mat-button class="menu-button">
       <mat-icon>shop_two</mat-icon>
       <span>Campaigns</span>
@@ -16,13 +13,11 @@
       <mat-icon>settings</mat-icon>
       <span>Settings</span>
     </button>
-
+    <button (click)="navigate(Routes.dashboard)" mat-button class="menu-button">
+      <mat-icon>person</mat-icon>
+      <span>Receivers</span>
+    </button>
     <mat-divider></mat-divider>
-
-<!--    <button mat-button class="menu-button">-->
-<!--      <mat-icon>help</mat-icon>-->
-<!--      <span>Help</span>-->
-<!--    </button>-->
   </mat-sidenav>
 
   <mat-sidenav-content>

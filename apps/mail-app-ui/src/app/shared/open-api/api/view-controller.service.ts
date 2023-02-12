@@ -138,7 +138,7 @@ export class ViewControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<ViewAddDTO>(`${this.configuration.basePath}/views/add`,
+        return this.httpClient.get<ViewAddDTO>(`${this.configuration.basePath}/stats/view`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -187,7 +187,7 @@ export class ViewControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<ViewDTO>>(`${this.configuration.basePath}/views`,
+        return this.httpClient.get<Array<ViewDTO>>(`${this.configuration.basePath}/stats`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -243,7 +243,7 @@ export class ViewControllerService {
       responseType_ = 'text';
     }
 
-    return this.httpClient.get<StatsDTO>(`${this.configuration.basePath}/views/stats`,
+    return this.httpClient.get<StatsDTO>(`${this.configuration.basePath}/stats/stats`,
       {
         context: localVarHttpContext,
         params: localVarQueryParameters,
