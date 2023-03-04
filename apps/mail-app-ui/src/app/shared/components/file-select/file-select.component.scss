@@ -1,0 +1,16 @@
+label.file {
+  background-color: dodgerblue;
+  color: white;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  padding: 7.5px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+input[type="file"] {
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+}

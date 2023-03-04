@@ -1,0 +1,8 @@
+<h4>Upload image</h4>
+<div style="margin: 15px 0">
+  <app-file-select [returnType]="FileSelectReturnType.RAW" (fileSelected)="onFileSelected($event)"></app-file-select>
+</div>
+<div class="buttons-wrapper">
+  <button style="margin-right: 10px" mat-flat-button color="primary" (click)="onClose()">Import</button>
+  <button mat-flat-button color="accent" [matDialogClose]="null">Cancel</button>
+</div>
