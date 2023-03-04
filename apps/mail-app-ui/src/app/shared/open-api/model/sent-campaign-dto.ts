@@ -21,5 +21,7 @@ export interface SentCampaignDTO {
     template?: TemplateDTO;
     group?: GroupDTO;
     status?: string;
+    sender?: string;
+    title?: string;
 }
 

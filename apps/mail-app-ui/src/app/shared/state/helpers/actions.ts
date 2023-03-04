@@ -5,6 +5,8 @@ export enum FeatureName {
   SMTP_CONFIG = 'Smtp Config',
   TEMPLATES = 'Template',
   CAMPAIGNS = 'Campaign',
+  RECEIVERS = 'Receivers',
+  GROUPS = 'Groups',
 }
 
 export type ResponseError = string;
@@ -28,7 +30,7 @@ export const createActions = <T, P = {}>(featureName: FeatureName) => createActi
   }
 });
 
-export const updateActions = <T, ID = string>(featureName: FeatureName) => createActionGroup({
+export const updateActions = <T, ID = number>(featureName: FeatureName) => createActionGroup({
   source: featureName,
   events: {
     'Load Data To Update': props<{ id: ID, params?: any }>(),
@@ -63,12 +65,12 @@ export interface CommonActions<T, P = {}> {
     'Create Failure': ActionCreatorProps<{ error: ResponseError }>;
   },
   update: {
-    'Load Data To Update': ActionCreatorProps<{ id: string, params?: P }>;
+    'Load Data To Update': ActionCreatorProps<{ id: number, params?: P }>;
     'Load Data To Update Success': ActionCreatorProps<{ data: T }>;
     'Load Data To Update Failure': ActionCreatorProps<{ error: ResponseError }>;
-    'Update Submitted': ActionCreatorProps<{ id: string, data: T }>;
+    'Update Submitted': ActionCreatorProps<{ id:  number, data: T }>;
     'Update Success': ActionCreatorProps<{ data: T }>;
-    'Update Failure': ActionCreatorProps<{ data: T, error: ResponseError }>;
+    'Update Failure': ActionCreatorProps<{ error: ResponseError }>;
   },
   delete: {
     'Delete': ActionCreatorProps<{ id: string }>;

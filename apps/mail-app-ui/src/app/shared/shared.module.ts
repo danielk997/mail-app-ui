@@ -17,8 +17,8 @@ import {MonacoEditorModule} from 'ngx-monaco-editor-v2';
 import {RouterModule} from '@angular/router';
 import {UnsafeHtmlPipe} from './pipes/unsafe-html.pipe';
 import {TemplatePreviewComponent} from './components/template-preview/template-preview.component';
-import {APIS} from "./open-api";
 import {FileSelectComponent} from "./components/file-select/file-select.component";
+import {PickListComponent} from "./components/pick-list/pick-list.component";
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import {FileSelectComponent} from "./components/file-select/file-select.componen
     UnsafeHtmlPipe,
     TemplatePreviewComponent,
     FileSelectComponent,
+    PickListComponent
   ],
   imports: [
     ...MATERIALS,
@@ -55,7 +56,8 @@ import {FileSelectComponent} from "./components/file-select/file-select.componen
     MonacoEditorModule,
     UnsafeHtmlPipe,
     GridBaseComponent,
-    FileSelectComponent
+    FileSelectComponent,
+    PickListComponent
   ],
 })
 export class SharedModule {

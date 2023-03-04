@@ -12,6 +12,8 @@
 
 
 export interface SentCampaignAddDTO { 
+    sender?: string;
+    title?: string;
     campaignId?: number;
     templateId?: number;
     receiversGroupId?: number;

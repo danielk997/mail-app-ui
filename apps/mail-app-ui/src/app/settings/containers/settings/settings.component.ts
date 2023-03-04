@@ -83,8 +83,6 @@ export class SettingsComponent implements OnInit {
         buttons: [
           editActionButton(() => {
           }),
-          deleteActionButton(() => {
-          }),
         ]
       }),
     });

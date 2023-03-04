@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <form [formGroup]="optionsForm" [style.grid-template-rows]="!(rightBoxLabel && leftBoxLabel) ? '35px 1fr' : ''">
+    <input
+      formControlName="filter"
+      data-qa="options-filter"
+      placeholder="search"
+      (input)="onOptionsFilter()"/>
+
+    <label *ngIf="leftBoxLabel" for="right-select">
+      <span>{{leftBoxLabel ?? ''}}</span>
+    </label>
+    <select data-qa="options-select" id="right-select" formControlName="select" multiple>
+      <ng-container *ngFor="let item of visibleOptions, index as i">
+        <option [value]="item">{{valueProperty ? item[valueProperty] : item}}</option>
+      </ng-container>
+    </select>
+  </form>
+
+  <div class="buttons" style="">
+    <button
+      mat-icon-button mat-flat-button
+      data-qa="button-to-right"
+      color="primary"
+      class="size-s"
+      [disabled]="(optionsFormSelectValue ?? []).length === 0 || visibleOptions.length === 0"
+      (click)="moveToRight()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+    <button
+      mat-icon-button mat-flat-button
+      data-qa="button-all-to-right"
+      color="primary"
+      class="size-s"
+      [disabled]="options.length === 0 || visibleOptions.length === 0"
+      (click)="moveAllToRight()">
+      <mat-icon>last_page</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      data-qa="button-to-left"
+      mat-flat-button color="accent"
+      class="size-s"
+      [disabled]="(valueFormSelectValue ?? []).length === 0"
+      (click)="moveToLeft()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button
+      mat-flat-button color="accent"
+      data-qa="button-all-to-left"
+      mat-icon-button
+      class="size-s"
+      [disabled]="value.length === 0 || visibleValues.length === 0"
+      (click)="moveAllToLeft()">
+      <mat-icon>first_page</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="valueForm" [style.grid-template-rows]="!(rightBoxLabel && leftBoxLabel) ? '35px 1fr' : ''">
+    <input
+      data-qa="values-filter"
+      placeholder="search"
+      formControlName="filter"
+      (input)="onValueFilter()"/>
+    <label *ngIf="leftBoxLabel || rightBoxLabel" for="left-select">
+      <span>{{rightBoxLabel ?? ''}}</span>
+    </label>
+    <select data-qa="values-select" id="left-select" formControlName="select" multiple>
+      <ng-container *ngFor="let item of visibleValues, index as i">
+        <option
+          [value]="item">{{valueProperty ? item[valueProperty] : item}}</option>
+      </ng-container>
+    </select>
+  </form>
+</div>
+
+

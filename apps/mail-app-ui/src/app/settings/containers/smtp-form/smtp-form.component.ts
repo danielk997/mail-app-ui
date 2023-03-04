@@ -34,6 +34,7 @@ export class SmtpFormComponent implements OnInit {
         userName: this._fb.text({validators: [Validators.required]}),
         port: this._fb.text({validators: [Validators.required]}),
         password: this._fb.text({params: {type: TextType.PASSWORD}, validators: [Validators.required]}),
+        active: this._fb.checkbox({}),
       }),
       type: FormBaseType.CREATE,
       onSubmit: (form: FormGroup) => {

@@ -1,0 +1,10 @@
+<mail-app-ui-form-base [options]="options">
+  <ng-template let-control appFormField formFieldName="receivers">
+    <mail-app-pick-list
+      [formControl]="control"
+      leftBoxLabel="All Users"
+      rightBoxLabel="Selected Users"
+      valueProperty="email"
+      [options]="(receivers$ | async)!"></mail-app-pick-list>
+  </ng-template>
+</mail-app-ui-form-base>

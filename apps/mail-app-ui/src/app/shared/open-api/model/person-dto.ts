@@ -9,19 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Group } from './group';
-import { Campaign } from './campaign';
-import { Template } from './template';
 
 
-export interface SentCampaign { 
-    id?: string;
-    date: string;
-    status: string;
-    sender: string;
-    title: string;
-    parent: Campaign;
-    template: Template;
-    group: Group;
+export interface PersonDTO { 
+    id?: number;
+    name?: string;
+    email?: string;
 }
 

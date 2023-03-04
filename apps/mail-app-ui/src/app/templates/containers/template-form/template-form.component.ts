@@ -38,7 +38,7 @@ export class TemplateFormComponent implements OnInit {
 
   onPreview() {
     this._matDialog.open<TemplatePreviewComponent, TemplatePreviewDialogData>(TemplatePreviewComponent, {
-      width: '600px',
+      width: '700px',
       height: '80vh',
       data: {
         html: this.message
